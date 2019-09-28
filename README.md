@@ -15,6 +15,8 @@ All the following commands must be executed inside the project root folder.
 Run `composer install`
 
 ## Initialize database and fixtures
+This app uses SQLite for demonstration.
+
 - Database init: `php bin\console doctrine:schema:create`
 - Fixtures: `php bin\console doctrine:fixture:load`
 
