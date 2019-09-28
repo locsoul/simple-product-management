@@ -39,7 +39,8 @@ twig:
 # Doctrine Configuration
 doctrine:
     dbal:
-        driver: pdo_mysql
+        driver: pdo_sqlite
+        path: '%kernel.project_dir%/app/Resources/app.db'
         host: '%database_host%'
         port: '%database_port%'
         dbname: '%database_name%'
@@ -69,3 +70,23 @@ swiftmailer:
 sensio_framework_extra:
    router:
         annotations: false
+
+nelmio_api_doc:
+    documentation:
+        info:
+            title: My App
+            description: This is an awesome app!
+            version: 1.0.0
+
+    areas: # to filter documented areas
+        path_patterns:
+            - ^/api(?!/doc$) # Accepts routes under /api except /api/doc
+
+fos_rest:
+    routing_loader: true
+    view:
+        view_response_listener:  true
+    format_listener:
+        rules:
+            - { path: ^/api, prefer_extension: true, fallback_format: json, priorities: [ json, html ] }
+            - { path: ^/, stop: true }
